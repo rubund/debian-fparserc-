@@ -1,0 +1,11 @@
+# Bug: positiveinteger*terms1 + -sameinteger*terms2 incorrectly ungroups the terms in terms1
+# Fixed in commit 11d99dabc69750b8ac232570b3e523b026c51a2a
+
+T=f d li
+V=x,y,z
+R=-3,3,2
+F=5*x*y + -5*z
+C=5*x*y + -5*z
+
+# Expected result: (x*y-z)*5
+# Erroneous result: ((x+y)-z)*5
