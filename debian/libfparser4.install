@@ -1,1 +1,1 @@
-usr/lib/libfparser.so.*
+usr/lib/*/libfparser.so.*
