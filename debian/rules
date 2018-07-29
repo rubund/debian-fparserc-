@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+
+override_dh_auto_configure:
+	make fpoptimizer.cc
+	dh_auto_configure
+
+override_dh_auto_clean:
+	dh_auto_clean
