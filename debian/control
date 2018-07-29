@@ -14,7 +14,6 @@ Homepage: http://warp.povusers.org/FunctionParser/
 
 Package: libfparser4
 Architecture: any
-Section: libs
 Depends: ${shlibs:Depends},
          ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
