@@ -14,6 +14,8 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 
 override_dh_auto_configure:
+	mv util/tree_grammar_parser.cc util/tree_grammar_parser.cc.bak
+	make util/tree_grammar_parser.cc
 	make fpoptimizer.cc
 	mkdir -p build
 	cd build && cmake -DCMAKE_INSTALL_PREFIX=/usr -DLIB_SUFFIX="/$(DEB_HOST_MULTIARCH)" ..
@@ -25,6 +27,7 @@ override_dh_auto_install:
 	cd build && make DESTDIR=../debian/tmp install
 
 override_dh_auto_clean:
+	mv util/tree_grammar_parser.cc.bak util/tree_grammar_parser.cc || true
 	$(RM) -r build
 	dh_auto_clean
 	$(RM) fpoptimizer.cc
