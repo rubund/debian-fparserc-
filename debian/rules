@@ -14,14 +14,15 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 override_dh_auto_configure:
 	make fpoptimizer.cc
 	mkdir -p build
-	cd build && cmake ..
+	cd build && cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 
 override_dh_auto_build:
 	cd build && make
 
 override_dh_auto_install:
-	cd build && make install
+	cd build && make DESTDIR=../debian/tmp install
 
 override_dh_auto_clean:
 	$(RM) -r build
 	dh_auto_clean
+	$(RM) fpoptimizer.cc
